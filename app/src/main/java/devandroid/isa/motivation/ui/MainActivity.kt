@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import devandroid.isa.motivation.utils.MotivationConstants
 import devandroid.isa.motivation.R
+import devandroid.isa.motivation.data.Mock
 import devandroid.isa.motivation.utils.SecurityPreferences
 import devandroid.isa.motivation.databinding.ActivityMainBinding
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         handleUserName()
         handleFilter(R.id.image_all)
+        handleNextPhrase()
 
         binding.btnNovaFrase.setOnClickListener(this)
         binding.imageAll.setOnClickListener(this)
@@ -42,11 +44,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         if (view.id == R.id.btn_nova_frase) {
-            var s = ""
+            handleNextPhrase()
         } else if (view.id in listOf(R.id.image_all, R.id.image_happy, R.id.image_sunny)) {
             handleFilter(view.id)
 
         }
+    }
+
+    private fun handleNextPhrase() {
+
+        binding.txtFrase.text = Mock().getPhrase(categoryId)
+
     }
 
     private fun handleFilter(id: Int) {
