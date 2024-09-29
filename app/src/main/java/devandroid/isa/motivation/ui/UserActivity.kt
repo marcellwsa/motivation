@@ -1,4 +1,4 @@
-package devandroid.isa.motivation
+package devandroid.isa.motivation.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import devandroid.isa.motivation.utils.MotivationConstants
+import devandroid.isa.motivation.R
+import devandroid.isa.motivation.utils.SecurityPreferences
 import devandroid.isa.motivation.databinding.ActivityUserBinding
 
 class UserActivity : AppCompatActivity(), View.OnClickListener {
@@ -24,7 +25,15 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnSave.setOnClickListener(this)
 
+        verifyUserName()
+    }
 
+    private fun verifyUserName() {
+        val name = SecurityPreferences(this).getString(MotivationConstants.KEY.USER_NAME)
+        if (name != "") {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     override fun onClick(v: View) {
@@ -37,7 +46,7 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
         val name = binding.edtName.text.toString()
         if (name != "") {
 
-            SecurityPreferences(this).storeString("USER_NAME", name)
+            SecurityPreferences(this).storeString(MotivationConstants.KEY.USER_NAME, name)
 
             startActivity(Intent(this, MainActivity::class.java))
             finish()

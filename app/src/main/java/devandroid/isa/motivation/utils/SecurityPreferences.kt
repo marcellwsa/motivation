@@ -1,4 +1,4 @@
-package devandroid.isa.motivation
+package devandroid.isa.motivation.utils
 
 import android.content.Context
 import android.content.SharedPreferences

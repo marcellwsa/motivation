@@ -1,11 +1,12 @@
-package devandroid.isa.motivation
+package devandroid.isa.motivation.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import devandroid.isa.motivation.utils.MotivationConstants
+import devandroid.isa.motivation.R
+import devandroid.isa.motivation.utils.SecurityPreferences
 import devandroid.isa.motivation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun handleUserName() {
-        val name = SecurityPreferences(this).getString("USER_NAME")
+        val name = SecurityPreferences(this).getString(MotivationConstants.KEY.USER_NAME)
         binding.txtOla.text = "Olá, $name!"
     }
 
