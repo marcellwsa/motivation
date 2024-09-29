@@ -22,9 +22,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         //supportActionBar?.show()
 
+        handleUserName()
+
 
         binding.btnNovaFrase.setOnClickListener(this)
 
+    }
+
+    private fun handleUserName() {
+        val name = SecurityPreferences(this).getString("USER_NAME")
+        binding.txtOla.text = "Olá, $name!"
     }
 
     override fun onClick(view: View) {
